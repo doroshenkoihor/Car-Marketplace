@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @dealer %>
+
+<div>
+  <%= link_to "Edit this dealer", edit_dealer_path(@dealer) %> |
+  <%= link_to "Back to dealers", dealers_path %>
+
+  <%= button_to "Destroy this dealer", @dealer, method: :delete %>
+</div>

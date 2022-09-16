@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  fueltype: 1
+  bodytype: 1
+  gearbox: 1
+  price: 1
+  model: one
+  dealer: one
+
+two:
+  name: MyString
+  fueltype: 1
+  bodytype: 1
+  gearbox: 1
+  price: 1
+  model: two
+  dealer: two
