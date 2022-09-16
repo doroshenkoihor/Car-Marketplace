@@ -46,6 +46,11 @@
     <%= form.select :dealer_id, @dealers.map{ |d| [d.name, d.id] } %>
   </div>
 
+  <div class='form-group'>
+    <%= form.label :photo %>
+    <%= form.file_field :photo %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

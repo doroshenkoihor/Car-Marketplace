@@ -1,7 +1,5 @@
 class CarsController < ApplicationController
   before_action :set_car, only: %i[ show edit update destroy ]
-  before_action :set_model, only: %i[new create edit update destroy]
-  before_action :set_dealer, only: %i[new create edit update destroy]
 
   # GET /cars or /cars.json
   def index
@@ -82,14 +80,6 @@ class CarsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def car_params
-      params.require(:car).permit(:name, :fueltype, :bodytype, :gearbox, :price, :model_id, :dealer_id)
-    end
-
-    def set_model
-      @model = Model.find(params[:id])
-    end
-
-    def set_dealer
-      @dealer = Dealer.find(params[:id])
+      params.require(:car).permit(:name, :fueltype, :bodytype, :gearbox, :price, :photo, :model_id, :dealer_id)
     end
 end

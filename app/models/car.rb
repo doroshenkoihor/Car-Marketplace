@@ -4,4 +4,6 @@ class Car < ApplicationRecord
   enum gearbox: { manual: 0, automatic: 1 }
   belongs_to :model
   belongs_to :dealer
+
+  has_one_attached :photo
 end
