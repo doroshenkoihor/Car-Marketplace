@@ -30,13 +30,23 @@
   </p>
 
   <p>
+    <strong>Parent:</strong>
+    <%= car.model.name %>
+  </p>
+
+  <p>
     <strong>Dealer:</strong>
     <%= car.dealer.name %>
   </p>
 
   <p>
+    <strong>Brand:</strong>
+    <%= car.model.brand.name %>
+  </p>
+
+  <p>
     <strong>Photo:</strong>
-    <%= image_tag car.photo, size: "200x300"%>
+    <%= image_tag car.photo, size: "200x300" %>
   </p>
 
 </div>

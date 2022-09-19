@@ -1,9 +1,18 @@
 class ModelsController < ApplicationController
-  before_action :set_model, only: %i[ show edit update destroy ]
+  before_action :set_model, only: %i[show edit update destroy]
 
   # GET /models or /models.json
   def index
-    @models = Model.all
+    if params[:brand_id].present?
+      @models = Model.where(brand_id: params[:brand_id])
+    else
+      @models = Model.all
+    end
+
+    respond_to do |format|
+      format.html 
+      format.json { render json: @models }
+    end
   end
 
   # GET /models/1 or /models/1.json
@@ -14,6 +23,7 @@ class ModelsController < ApplicationController
   def new
     @model = Model.new
     @brands = Brand.all
+    @models = Model.all
   end
 
   # GET /models/1/edit
@@ -66,6 +76,6 @@ class ModelsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def model_params
-      params.require(:model).permit(:name, :cars_count, :description, :brand_id)
+      params.require(:model).permit(:name, :description, :brand_id)
     end
 end

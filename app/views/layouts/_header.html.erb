@@ -1,0 +1,26 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand"><%= link_to "DreamCars", root_path %></div>
+    </div>
+    <ul class="nav navbar-nav">
+      <% if user_signed_in? %>
+      <li class="active"><%= link_to "Account", edit_user_registration_path %></li>
+      <% end %>
+      <% if current_user&.admin? %>
+      <li class="active"><%= link_to "Brand", brands_path %></li>
+      <li class="active"><%= link_to "Models", models_path %></li>
+      <li class="active"><%= link_to "Dealers", dealers_path %></li>
+      <li class="active"><%= link_to "Cars", new_car_path %></li>
+      <% end %>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+     <% if current_user %>
+      <li class="active"><%= link_to "Signout", destroy_user_session_path, method: :delete %></li>
+      <% else %>
+      <li class="active"><%= link_to "Signup", new_user_registration_path %></li>
+      <li class="active"><%= link_to "Login", new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

@@ -1,3 +1,4 @@
+<% if current_user&.admin? %>
 <p style="color: green"><%= notice %></p>
 
 <h1>Models</h1>
@@ -12,3 +13,4 @@
 </div>
 
 <%= link_to "New model", new_model_path %>
+<% end %>

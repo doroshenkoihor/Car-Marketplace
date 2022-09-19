@@ -1,3 +1,4 @@
+<% if current_user&.admin? %>
 <%= form_with(model: model) do |form| %>
   <% if model.errors.any? %>
     <div style="color: red">
@@ -17,21 +18,23 @@
   </div>
 
   <div>
-    <%= form.label :cars_count, style: "display: block" %>
-    <%= form.number_field :cars_count %>
-  </div>
-
-  <div>
     <%= form.label :description, style: "display: block" %>
     <%= form.text_area :description %>
   </div>
 
   <div>
+    <%= form.label :parent_id, style: "display: block" %>
+    <%= form.select :parent_id, @models.map{ |m| [m.name, m.id] }, :include_blank => true %>
+  </div>
+
+
+  <div>
     <%= form.label :brand_id, style: "display: block" %>
-    <%= form.select :brand_id, @brands.map{ |b| [b.name, b.id] } %>
+    <%= form.select :brand_id, @brands.map{ |b| [b.name, b.id] }, {}, id: "brand_selector" %>
   </div>
 
   <div>
     <%= form.submit %>
   </div>
+<% end %>
 <% end %>

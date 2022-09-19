@@ -1,5 +1,5 @@
 class DealersController < ApplicationController
-  before_action :set_dealer, only: %i[ show edit update destroy ]
+  before_action :set_dealer, only: %i[show edit update destroy]
 
   # GET /dealers or /dealers.json
   def index

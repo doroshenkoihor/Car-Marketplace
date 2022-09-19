@@ -38,12 +38,22 @@
 
   <div>
     <%= form.label :model_id, style: "display: block" %>
-    <%= form.select :model_id, @models.map{ |m| [m.name, m.id] } %>
+    <%= form.select :model_id, @models.map{ |m| [m.name, m.id] }, {}, id: "model_selector" %>
+  </div>
+
+  <div>
+    <%= form.label :parent_id, style: "display: block" %>
+    <%= form.select :parent_id, @parent.map{ |m| [m.name, m.id] }, {}, id: "model_selector" %>
   </div>
 
   <div>
     <%= form.label :dealer_id, style: "display: block" %>
     <%= form.select :dealer_id, @dealers.map{ |d| [d.name, d.id] } %>
+  </div>
+
+  <div>
+    <%= form.label :brand_ids, style: "display: block" %>
+    <%= form.select :brand_ids, @brands.map{ |b| [b.name, b.id] }, {}, id: "brand_selector" %>
   </div>
 
   <div class='form-group'>

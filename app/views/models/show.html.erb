@@ -1,3 +1,4 @@
+<% if current_user&.admin? %>
 <p style="color: green"><%= notice %></p>
 
 <%= render @model %>
@@ -8,3 +9,4 @@
 
   <%= button_to "Destroy this model", @model, method: :delete %>
 </div>
+<% end %>

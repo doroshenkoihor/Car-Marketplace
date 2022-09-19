@@ -1,3 +1,4 @@
+<% if current_user&.admin? %>
 <div id="<%= dom_id brand %>">
   <p>
     <strong>Name:</strong>
@@ -10,3 +11,4 @@
   </p>
 
 </div>
+<% end %>

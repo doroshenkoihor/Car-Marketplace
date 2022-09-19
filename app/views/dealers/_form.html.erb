@@ -1,3 +1,4 @@
+<% if current_user&.admin? %>
 <%= form_with(model: dealer) do |form| %>
   <% if dealer.errors.any? %>
     <div style="color: red">
@@ -19,4 +20,5 @@
   <div>
     <%= form.submit %>
   </div>
+<% end %>
 <% end %>

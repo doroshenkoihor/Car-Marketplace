@@ -1,5 +1,6 @@
 class BrandsController < ApplicationController
-  before_action :set_brand, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[show]
+  before_action :set_brand, only: %i[show edit update destroy]
 
   # GET /brands or /brands.json
   def index

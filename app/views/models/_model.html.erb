@@ -1,12 +1,17 @@
+<% if current_user&.admin? %>
 <div id="<%= dom_id model %>">
   <p>
     <strong>Name:</strong>
     <%= model.name %>
   </p>
-
+  <% if model.parent %>
+    <strong>Parent:</strong>
+    <%= model.parent.name %>
+  <% end %>
+  </p>
   <p>
     <strong>Cars count:</strong>
-    <%= model.cars_count %>
+    <%= model.cars.count %>
   </p>
 
   <p>
@@ -18,5 +23,5 @@
     <strong>Brand:</strong>
     <%= model.brand.name %>
   </p>
-
 </div>
+<% end %>

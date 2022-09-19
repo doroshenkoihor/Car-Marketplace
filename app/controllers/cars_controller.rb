@@ -1,5 +1,9 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_car, only: %i[show edit update destroy]
+  before_action :fetch_models!
+  before_action :fetch_dealers!
+  before_action :fetch_brands!
 
   # GET /cars or /cars.json
   def index
@@ -11,8 +15,6 @@ class CarsController < ApplicationController
     @fueltypes = Car.fueltypes.keys
     @bodytypes = Car.bodytypes.keys
     @gearboxes = Car.gearboxes.keys
-    @models = Model.all
-    @dealers = Dealer.all
   end
 
   # GET /cars/new
@@ -21,8 +23,7 @@ class CarsController < ApplicationController
     @fueltypes = Car.fueltypes.keys
     @bodytypes = Car.bodytypes.keys
     @gearboxes = Car.gearboxes.keys
-    @models = Model.all
-    @dealers = Dealer.all
+    @parent = Model.where(parent_id: params[:parent_id])
   end
 
   # GET /cars/1/edit
@@ -30,8 +31,6 @@ class CarsController < ApplicationController
     @fueltypes = Car.fueltypes.keys
     @bodytypes = Car.bodytypes.keys
     @gearboxes = Car.gearboxes.keys
-    @models = Model.all
-    @dealers = Dealer.all
   end
 
   # POST /cars or /cars.json
@@ -80,6 +79,19 @@ class CarsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def car_params
-      params.require(:car).permit(:name, :fueltype, :bodytype, :gearbox, :price, :photo, :model_id, :dealer_id)
+      params.require(:car).permit(:name, :fueltype, :bodytype, :gearbox, :price, :photo, :model_id, :dealer_id, 
+                                  model_attributes: :brand_id)
+    end
+
+    def fetch_models!
+      @models = Model.all
+    end
+
+    def fetch_dealers!
+      @dealers = Dealer.all
+    end
+
+    def fetch_brands!
+      @brands = Brand.all
     end
 end

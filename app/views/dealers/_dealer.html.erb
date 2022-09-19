@@ -1,3 +1,4 @@
+<% if current_user&.admin? %>
 <div id="<%= dom_id dealer %>">
   <p>
     <strong>Name:</strong>
@@ -5,3 +6,4 @@
   </p>
 
 </div>
+<% end %>

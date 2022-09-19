@@ -1,3 +1,4 @@
+<% if current_user&.admin? %>
 <h1>Editing model</h1>
 
 <%= render "form", model: @model %>
@@ -8,3 +9,4 @@
   <%= link_to "Show this model", @model %> |
   <%= link_to "Back to models", models_path %>
 </div>
+<% end %>
