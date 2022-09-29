@@ -1,40 +1,25 @@
 <% if current_user&.admin? %>
 <%= form_with(model: model) do |form| %>
-  <% if model.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(model.errors.count, "error") %> prohibited this model from being saved:</h2>
+  <div class="card">
+    <div class="card-body">
 
-      <ul>
-        <% model.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+      <div class="mb-3">
+      <%= form.label :name, { class: "form-label"} %>
+      <%= form.text_field :name, { class: "form-control", placeholder: "Name" } %>
+      </div>
+
+      <div class="mb-3">
+      <%= form.label :description, { class: "form-label"} %>
+      <%= form.text_area :description, { class: "form-control", placeholder: "Description" } %>
+      </div>
+
+      <div class="mb-3">
+      <%= form.label :brand_id, { class: "form-label"} %>
+      <%= form.select :brand_id, @brands.map{ |b| [b.name, b.id] } %>
+      </div>
+
+      <%= form.submit "Submit", class: "btn btn-primary" %>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :parent_id, style: "display: block" %>
-    <%= form.select :parent_id, @models.map{ |m| [m.name, m.id] }, :include_blank => true %>
-  </div>
-
-
-  <div>
-    <%= form.label :brand_id, style: "display: block" %>
-    <%= form.select :brand_id, @brands.map{ |b| [b.name, b.id] }, {}, id: "brand_selector" %>
-  </div>
-
-  <div>
-    <%= form.submit %>
   </div>
 <% end %>
 <% end %>

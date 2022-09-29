@@ -1,17 +1,5 @@
 <%= form_with(model: car) do |form| %>
-  <% if car.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
-
-      <ul>
-        <% car.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
+ <div>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
   </div>
@@ -39,11 +27,6 @@
   <div>
     <%= form.label :model_id, style: "display: block" %>
     <%= form.select :model_id, @models.map{ |m| [m.name, m.id] }, {}, id: "model_selector" %>
-  </div>
-
-  <div>
-    <%= form.label :parent_id, style: "display: block" %>
-    <%= form.select :parent_id, @parent.map{ |m| [m.name, m.id] }, {}, id: "model_selector" %>
   </div>
 
   <div>

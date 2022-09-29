@@ -23,11 +23,11 @@ class ModelsController < ApplicationController
   def new
     @model = Model.new
     @brands = Brand.all
-    @models = Model.all
   end
 
   # GET /models/1/edit
   def edit
+    @brands = Brand.all
   end
 
   # POST /models or /models.json

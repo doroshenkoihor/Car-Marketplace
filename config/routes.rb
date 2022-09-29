@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :brands
   resources :dealers
   resources :models
-  
+  resources :favorites
   root "cars#index"
 end

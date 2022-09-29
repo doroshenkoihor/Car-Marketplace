@@ -7,4 +7,6 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 
+  has_many :favorites
+
 end

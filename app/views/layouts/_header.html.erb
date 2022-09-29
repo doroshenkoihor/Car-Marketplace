@@ -12,6 +12,10 @@
       <li class="active"><%= link_to "Models", models_path %></li>
       <li class="active"><%= link_to "Dealers", dealers_path %></li>
       <li class="active"><%= link_to "Cars", new_car_path %></li>
+      <li class="active"><%= link_to "Favorites", favorites_path %></li>
+      <% end %>
+      <% if current_user %>
+      <li class="active"><%= link_to "Favorites", favorites_path %></li>
       <% end %>
     </ul>
     <ul class="nav navbar-nav navbar-right">

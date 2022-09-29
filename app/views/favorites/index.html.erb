@@ -1,46 +1,48 @@
+<%= link_to "Back to cars", cars_path %>
+<%= @cars.each do |car| %>
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
       <div class="col-md-4">
-        <td><%= image_tag @car.photo, size: "450x600"%><td>
+        <td><%= image_tag car.photo, size: "450x600"%><td>
         <div class="table-responsive">
           <table class="table">
             <tbody>
               <tr>
                 <td><strong>Configuration:</strong></td>
-                <td><%= @car.name %></td>
+                <td><%= car.name %></td>
               </tr>
               <tr>
                 <td><strong>Model:</strong></td>
-                <td><%= @car.model.name %></td>
+                <td><%= car.model.name %></td>
               </tr>
               <tr>
                 <td><strong>Brand:</strong></td>
-                <td><%= @car.model.brand.name %></td>
+                <td><%= car.model.brand.name %></td>
               </tr>
               <tr>
                 <td><strong>Cars count:</strong></td>
-                <td><%= @car.model.cars.count %></td>
+                <td><%= car.model.cars.count %></td>
               </tr>
               <tr>
                 <td><strong>Fueltupe:</strong></td>
-                <td><%= @car.fueltype %></td>
+                <td><%= car.fueltype %></td>
               </tr>
               <tr>
                 <td><strong>Bodytype:</strong></td>
-                <td><%= @car.bodytype %></td>
+                <td><%= car.bodytype %></td>
               </tr>
               <tr>
                 <td><strong>Gearbox:</strong></td>
-                <td><%= @car.gearbox %></td>
+                <td><%= car.gearbox %></td>
               </tr>
               <tr>
                 <td><strong>Price:</strong></td>
-                <td><%= @car.price %></td>
+                <td><%= car.price %></td>
               </tr>
               <tr>
                 <td><strong>Dealer:</strong></td>
-                <td><%= @car.dealer.name %></td>
+                <td><%= car.dealer.name %></td>
               </tr>
             </tbody>
           </table>
@@ -49,17 +51,4 @@
     </div>
   </div>
 </div>
-
-
-<div>
-  <br><%= link_to "Back to cars", cars_path %></br>
-  <% if current_user %>
-  <br><%= link_to "Add to favorite", favorites_path(car_id: @car.id), method: :post %></br>
-  <% end %>
-  <% if current_user&.admin? %>
-  <%= link_to "Edit this car", edit_car_path(@car) %> |
-  <%= link_to "Back to cars", cars_path %>
-
-  <%= button_to "Destroy this car", @car, method: :delete %>
-  <% end %>
-</div>
+<% end %>

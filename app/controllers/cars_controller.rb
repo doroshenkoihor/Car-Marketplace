@@ -1,13 +1,19 @@
 class CarsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_car, only: %i[show edit update destroy]
-  before_action :fetch_models!
   before_action :fetch_dealers!
-  before_action :fetch_brands!
-
   # GET /cars or /cars.json
   def index
     @cars = Car.all
+    @cars = @cars.where(fueltype: params[:fueltype]) if params[:fueltype].present?
+    @cars = @cars.where(gearbox: params[:gearbox]) if params[:gearbox].present?
+    @cars = @cars.where(bodytype: params[:bodytype]) if params[:bodytype].present?
+    @cars = @cars.where(model: params[:model_name]) if params[:model_name].present?
+    if params[:searchp] || params[:searchpx] 
+      @search_pricen_term = params[:searchp]
+      @search_pricex_term = params[:searchpx] 
+      @cars = Car.between_range(@search_pricen_term, @search_pricex_term)
+  end
   end
 
   # GET /cars/1 or /cars/1.json
@@ -20,10 +26,21 @@ class CarsController < ApplicationController
   # GET /cars/new
   def new
     @car = Car.new
+    @brands = Brand.all
+    if params[:brand_id].present?
+      @models = Model.where(brand_id: params[:brand_id])
+    else
+      @models = Model.all
+    end
+
+    respond_to do |format|
+      format.html 
+      format.json { render json: @models }
+    end
+
     @fueltypes = Car.fueltypes.keys
     @bodytypes = Car.bodytypes.keys
     @gearboxes = Car.gearboxes.keys
-    @parent = Model.where(parent_id: params[:parent_id])
   end
 
   # GET /cars/1/edit
@@ -79,7 +96,7 @@ class CarsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def car_params
-      params.require(:car).permit(:name, :fueltype, :bodytype, :gearbox, :price, :photo, :model_id, :dealer_id, 
+      params.require(:car).permit(:name, :fueltype, :bodytype, :gearbox, :price, :photo, :model_id, :dealer_id,
                                   model_attributes: :brand_id)
     end
 
@@ -94,4 +111,4 @@ class CarsController < ApplicationController
     def fetch_brands!
       @brands = Brand.all
     end
-end
+  end
