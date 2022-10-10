@@ -1,32 +1,24 @@
 class CarsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_car, only: %i[show edit update destroy]
-  before_action :fetch_dealers!
-  # GET /cars or /cars.json
+
   def index
     @cars = Car.all
     @cars = @cars.where(fueltype: params[:fueltype]) if params[:fueltype].present?
     @cars = @cars.where(gearbox: params[:gearbox]) if params[:gearbox].present?
     @cars = @cars.where(bodytype: params[:bodytype]) if params[:bodytype].present?
-    @cars = @cars.where(model: params[:model_name]) if params[:model_name].present?
-    if params[:searchp] || params[:searchpx] 
-      @search_pricen_term = params[:searchp]
-      @search_pricex_term = params[:searchpx] 
-      @cars = Car.between_range(@search_pricen_term, @search_pricex_term)
-  end
   end
 
-  # GET /cars/1 or /cars/1.json
   def show
     @fueltypes = Car.fueltypes.keys
     @bodytypes = Car.bodytypes.keys
     @gearboxes = Car.gearboxes.keys
   end
 
-  # GET /cars/new
   def new
     @car = Car.new
     @brands = Brand.all
+    @dealers = Dealer.all
     if params[:brand_id].present?
       @models = Model.where(brand_id: params[:brand_id])
     else
@@ -43,14 +35,12 @@ class CarsController < ApplicationController
     @gearboxes = Car.gearboxes.keys
   end
 
-  # GET /cars/1/edit
   def edit
     @fueltypes = Car.fueltypes.keys
     @bodytypes = Car.bodytypes.keys
     @gearboxes = Car.gearboxes.keys
   end
 
-  # POST /cars or /cars.json
   def create
     @car = Car.new(car_params)
 
@@ -65,7 +55,6 @@ class CarsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /cars/1 or /cars/1.json
   def update
     respond_to do |format|
       if @car.update(car_params)
@@ -78,7 +67,6 @@ class CarsController < ApplicationController
     end
   end
 
-  # DELETE /cars/1 or /cars/1.json
   def destroy
     @car.destroy
 
@@ -89,26 +77,12 @@ class CarsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_car
       @car = Car.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def car_params
       params.require(:car).permit(:name, :fueltype, :bodytype, :gearbox, :price, :photo, :model_id, :dealer_id,
                                   model_attributes: :brand_id)
-    end
-
-    def fetch_models!
-      @models = Model.all
-    end
-
-    def fetch_dealers!
-      @dealers = Dealer.all
-    end
-
-    def fetch_brands!
-      @brands = Brand.all
     end
   end
