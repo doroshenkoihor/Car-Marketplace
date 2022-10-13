@@ -49,6 +49,9 @@ gem "sassc-rails"
 gem 'jquery-rails'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'activeadmin', '~> 2.13', '>= 2.13.1'
+gem 'grape', '~> 1.6', '>= 1.6.2'
+gem 'grape_on_rails_routes'
+gem 'devise-jwt'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
