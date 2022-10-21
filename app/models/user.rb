@@ -11,6 +11,6 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
 
 end
