@@ -6,7 +6,7 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    @favorite = Favorite.new(favorite_params.merge(user_id: current_user.id))
+    @favorite = Favorite.new(favorite_params)
     @favorite.save ? flash[:success] = 'Created!' : flash[:danger] = 'Incorrect!'
   end
 
@@ -19,6 +19,6 @@ class FavoritesController < ApplicationController
   private
 
   def favorite_params
-    params.permit(:user_id, :car_id)
+    params.permit(:car_id).merge(user_id: current_user.id)
   end
 end

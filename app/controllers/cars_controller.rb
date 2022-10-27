@@ -7,6 +7,9 @@ class CarsController < ApplicationController
     @cars = @cars.where(fueltype: params[:fueltype]) if params[:fueltype].present?
     @cars = @cars.where(gearbox: params[:gearbox]) if params[:gearbox].present?
     @cars = @cars.where(bodytype: params[:bodytype]) if params[:bodytype].present?
+    @cars = @cars.joins(model: :brand).where('brands.id = ?', params[:brand]) if params[:brand].present?
+    @cars = @cars.where(price: params[:price_from]..) if params[:price_from].present?
+    @cars = @cars.where('price <= ?', params[:price_to].to_f) if params[:price_to].present?
   end
 
   def show
@@ -36,6 +39,13 @@ class CarsController < ApplicationController
   end
 
   def edit
+    @brands = Brand.all
+    @dealers = Dealer.all
+    if params[:brand_id].present?
+      @models = Model.where(brand_id: params[:brand_id])
+    else
+      @models = Model.all
+    end
     @fueltypes = Car.fueltypes.keys
     @bodytypes = Car.bodytypes.keys
     @gearboxes = Car.gearboxes.keys

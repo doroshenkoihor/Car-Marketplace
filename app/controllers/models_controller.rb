@@ -32,6 +32,7 @@ class ModelsController < ApplicationController
 
   # POST /models or /models.json
   def create
+    #binding.pry
     @model = Model.new(model_params)
 
     respond_to do |format|
