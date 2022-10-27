@@ -1,5 +1,5 @@
-<%= link_to "Back to cars", cars_path %>
-<%= @cars.each do |car| %>
+<br><%= button_to "Back to cars", cars_path, class: "btn btn-primary" %><br>
+<% @cars.each do |car| %>
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
@@ -46,6 +46,7 @@
               </tr>
             </tbody>
           </table>
+          <%= button_to "Show this car", car, class: 'btn btn-secondary btn-sm', :method => :get %>
         </div>
       </div>
     </div>

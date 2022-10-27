@@ -1,50 +1,52 @@
 <%= form_with(model: car) do |form| %>
- <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :fueltype, style: "display: block" %>
-    <%= form.select :fueltype, @fueltypes %>
-  </div>
-
-  <div>
-    <%= form.label :bodytype, style: "display: block" %>
-    <%= form.select :bodytype, @bodytypes, {} %>
-  </div>
-
-  <div>
-    <%= form.label :gearbox, style: "display: block" %>
-    <%= form.select :gearbox, @gearboxes, {} %>
-  </div>
-
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.number_field :price %>
-  </div>
-
-  <div>
-    <%= form.label :model_id, style: "display: block" %>
-    <%= form.select :model_id, @models.map{ |m| [m.name, m.id] }, {}, id: "model_selector" %>
-  </div>
-
-  <div>
-    <%= form.label :dealer_id, style: "display: block" %>
-    <%= form.select :dealer_id, @dealers.map{ |d| [d.name, d.id] } %>
-  </div>
-
-  <div>
-    <%= form.label :brand_ids, style: "display: block" %>
-    <%= form.select :brand_ids, @brands.map{ |b| [b.name, b.id] }, {}, id: "brand_selector" %>
-  </div>
-
-  <div class='form-group'>
-    <%= form.label :photo %>
-    <%= form.file_field :photo %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <div class="form-group">
+      <%= form.label :name, { class: "form-label"} %>
+      <%= form.text_field :name, { class: "form-control", placeholder: "Name" } %>
+    </div>
+  
+    <div class="form-group">
+      <%= form.label :fueltype, { class: "form-label"} %>
+      <%= form.select :fueltype, @fueltypes %>
+    </div>
+  
+    <div class="form-group">
+      <%= form.label :bodytype, { class: "form-label"} %>
+      <%= form.select :bodytype, @bodytypes, {} %>
+    </div>
+  
+    <div class="form-group">
+      <%= form.label :gearbox, { class: "form-label"} %>
+      <%= form.select :gearbox, @gearboxes, {} %>
+    </div>
+  
+    <div class="form-group">
+      <%= form.label :price, { class: "form-label"} %>
+      <%= form.number_field :price %>
+    </div>
+  
+    <div class="form-group">
+      <%= form.label :model_id, { class: "form-label"} %>
+      <%= form.select :model_id, @models.map{ |m| [m.name, m.id] }, {}, id: "model_selector" %>
+    </div>
+  
+    <div class="form-group">
+      <%= form.label :dealer_id, { class: "form-label"} %>
+      <%= form.select :dealer_id, @dealers.map{ |d| [d.name, d.id] } %>
+    </div>
+  
+    <div class="form-group">
+      <%= form.label :brand_ids, { class: "form-label"} %>
+      <%= form.select :brand_ids, @brands.map{ |b| [b.name, b.id] }, {}, id: "brand_selector" %>
+    </div>
+  
+    <div class='form-group'>
+      <%= form.label :photo %>
+      <%= form.file_field :photo %>
+    </div>
+  
+    <div>
+      <%= form.submit "Create car", class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>

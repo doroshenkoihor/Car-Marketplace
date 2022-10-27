@@ -1,27 +1,38 @@
 <p style="color: green"><%= notice %></p>
-
   <%= form_tag(cars_path, method: :get, class: 'mb-5') do %>
-    <div class='d-flex mb-3'>
+    <div class='mb-3'>
       <div class="form-group p-1">
         <label class="mb-1">Fueltype:</label>
-        <%= select_tag :fueltype, options_for_select({ all: nil }.merge(Car::fueltypes), params[:fueltype]), class: "form-select" %>
+        <%= select_tag :fueltype, options_for_select({ all: nil }.merge(Car::fueltypes), params[:fueltype]), class: "form-control"%>
       </div>
       <div class="form-group p-1">
         <label class="mb-1">Gearbox:</label>
-        <%= select_tag :gearbox, options_for_select({ all: nil }.merge(Car::gearboxes), params[:gearbox]), class: "form-select" %>
+        <%= select_tag :gearbox, options_for_select({ all: nil }.merge(Car::gearboxes), params[:gearbox]), class: "form-control" %>
       </div>
       <div class="form-group p-1">
         <label class="mb-1">Bodytype:</label>
-        <%= select_tag :bodytype, options_for_select({ all: nil }.merge(Car::bodytypes), params[:bodytype]), class: "form-select" %>
+        <%= select_tag :bodytype, options_for_select({ all: nil }.merge(Car::bodytypes), params[:bodytype]), class: "form-control" %>
+      </div>
+      <div class="form-group p-1">
+        <label class="mb-1">Price From:</label>
+        <%= number_field_tag :price_from, params[:price_from], step: 0.01, class: "form-control" %>
+      </div>
+      <div class="form-group p-1">
+        <label class="mb-1">Price To:</label>
+        <%= number_field_tag :price_to, params[:price_to], step: 0.01, class: "form-control" %>
+      </div>
+      <div class="form-group p-1">
+        <label class="mb-1">Brand:</label>
+        <%= select_tag :brand, options_for_select({ all: nil }.merge(Brand.all.each_with_object({}) { |i, hash| hash[i.name] = i.id}), params[:brand]), class: "form-control" %>
       </div>
     <%= submit_tag 'Apply Filters' , name: nil, class: 'btn btn-secondary' %>
   <% end %>
 
 
-<h1>Cars</h1>
+<h1 class="text-center">Cars</h1>
 
 <div id="cars">
-  <div class="row row-cols-1 row-cols-md-5 g-4 mb-4">
+  <div class="row">
   <% @cars.each do |car| %>
     <%= render car %>
   <% end %>

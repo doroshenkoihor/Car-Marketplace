@@ -3,18 +3,17 @@
   <div class="card">
     <div class="card-body">
 
-  <div class="mb-3">
-    <%= form.label :name, { class: "form-label"} %>
-    <%= form.text_field :name, { class: "form-control", placeholder: "Name" } %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :name, { class: "form-label"} %>
+      <%= form.text_field :name, { class: "form-control", placeholder: "Name" } %>
+    </div>
 
-  <div class="field">
-    <%= form.label :description, { class: "form-label"} %>
-    <%= form.text_area :description, { class: "form-control", placeholder: "Description" } %>
+    <div class="field">
+      <%= form.label :description, { class: "form-label"} %>
+      <%= form.text_area :description, { class: "form-control", placeholder: "Description" } %>
+    </div>
+    <br><%= form.submit "Create Brand", class: "btn btn-primary" %></br>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</div>
 <% end %>
 <% end %>

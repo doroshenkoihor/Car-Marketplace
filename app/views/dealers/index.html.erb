@@ -1,16 +1,17 @@
 <% if current_user&.admin? %>
-<p style="color: green"><%= notice %></p>
-
-<h1>Dealers</h1>
-
-<div id="dealers">
+<%= button_to "New dealer", new_dealer_path, :id => 'open-contacts-dialog-btn',
+class: 'btn btn-primary', :method => :get %>
+<h1 class="mb-4">Dealers:</h1>
+<div class="row row-cols-1 row-cols-md-5 g-4 mb-4">
   <% @dealers.each do |dealer| %>
-    <%= render dealer %>
-    <p>
-      <%= link_to "Show this dealer", dealer %>
-    </p>
+    <div class="col">
+      <div class="card" style="width: 300px;">
+        <h2 class="mb-4 card-header"><%= dealer.name %></h2>
+        <div class="card-body">
+            <%= button_to "Show this dealer", dealer, class: 'btn btn-secondary btn-sm', :method => :get %>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New dealer", new_dealer_path %>
 <% end %>

@@ -52,14 +52,17 @@
 
 
 <div>
-  <br><%= link_to "Back to cars", cars_path %></br>
   <% if current_user %>
-  <br><%= link_to "Add to favorite", favorites_path(car_id: @car.id), method: :post %></br>
+    <% unless current_user.favorites.map(&:car_id).include?(@car.id) %>
+      <br><%= button_to "Add to favorite", favorites_path(car_id: @car.id), method: :post, class: 'btn btn-secondary' %></br>
+    <% else %>
+      <br><%= button_to "Remove from favorites", favorite_path(car_id: @car.id), method: :delete %></br>
+    <% end %>
   <% end %>
   <% if current_user&.admin? %>
-  <%= link_to "Edit this car", edit_car_path(@car) %> |
-  <%= link_to "Back to cars", cars_path %>
+  <%= button_to "Edit this car", edit_car_path(@car), class: 'btn btn-secondary' %>
+  <%= button_to "Back to cars", cars_path, class: 'btn btn-secondary' %>
 
-  <%= button_to "Destroy this car", @car, method: :delete %>
+  <%= button_to "Destroy this car", @car, method: :delete, class: 'btn btn-secondary' %>
   <% end %>
 </div>

@@ -1,12 +1,17 @@
 <% if current_user&.admin? %>
-<p style="color: green"><%= notice %></p>
-
-<%= render @brand %>
-
-<div>
-  <%= link_to "Edit this brand", edit_brand_path(@brand) %> |
-  <%= link_to "Back to brands", brands_path %>
-
-  <%= button_to "Destroy this brand", @brand, method: :delete %>
+<div class="row row-cols-1 row-cols-md-5 g-4 mb-4">
+  <div class="col">
+    <div class="card" style="width: 300px;">
+      <h1 class="mb-4 card-header">Brand:
+        <%= @brand.name %></h1>
+      <h2 class="mb-4 card-body">Description:
+        <%= @brand.description %></h2>
+      <div class="card-body">
+        <%= button_to "Edit", edit_brand_path(@brand), class: 'btn btn-secondary btn-sm', method: :get %>
+        <%= link_to "Destroy", brand_path(@brand), class: 'btn btn-danger btn-sm', data: {method: :delete, confirm: "Are you sure?"} %>
+        <%= link_to "Back to brands", brands_path, class: 'btn btn-secondary btn-sm' %>
+      </div>
+    </div>
+  </div>
 </div>
 <% end %>

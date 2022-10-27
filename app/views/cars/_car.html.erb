@@ -2,7 +2,7 @@
   <div class="col">
     <div class="card" style="max-width: 400px;">
       <% if car.photo.present? %>
-        <%= image_tag car.photo, class:"card-img-top", size: "460x280", style: "object-fit: contain;" %>
+        <%= image_tag car.photo, width: 300, class: 'd-block mx-auto', style: "object-fit: contain;" %>
       <% end %>
       <div class="card-body">
         <h5 class="mb-3"><%= link_to car.name, car_path(car), class: 'btn btn-secondary btn-sm', method: :get %></h5>

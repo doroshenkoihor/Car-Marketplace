@@ -1,12 +1,14 @@
 <% if current_user&.admin? %>
-<p style="color: green"><%= notice %></p>
-
-<%= render @dealer %>
-
-<div>
-  <%= link_to "Edit this dealer", edit_dealer_path(@dealer) %> |
-  <%= link_to "Back to dealers", dealers_path %>
-
-  <%= button_to "Destroy this dealer", @dealer, method: :delete %>
+<div class="row row-cols-1 row-cols-md-5 g-4 mb-4">
+  <div class="col">
+    <div class="card" style="width: 300px;">
+      <h1 class="mb-4 card-header"><%= @dealer.name %></h1>
+      <div class="card-body">
+        <%= button_to "Edit", edit_dealer_path(@dealer), class: 'btn btn-secondary btn-sm', method: :get %>
+        <%= link_to "Destroy", dealer_path(@dealer), class: 'btn btn-danger btn-sm', data: {method: :delete, confirm: "Are you sure?"} %>
+        <%= link_to "Back to dealers", dealers_path, class: 'btn btn-secondary btn-sm' %>
+      </div>
+    </div>
+  </div>
 </div>
 <% end %>
