@@ -43,15 +43,14 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 gem 'bootstrap-sass', '3.4.1'
-
-# Use Sass to process CSS
 gem "sassc-rails"
-gem 'jquery-rails'
+gem 'jquery-rails', '4.2'
 gem 'devise', '4.8.1'
 gem 'activeadmin', '2.13.1'
 gem 'grape', '1.6.2'
 gem 'grape_on_rails_routes'
-gem 'devise-jwt'
+gem 'devise-jwt', '0.10.0'
+gem 'haml-rails', '~> 2.1'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

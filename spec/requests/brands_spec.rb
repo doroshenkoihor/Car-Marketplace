@@ -24,14 +24,14 @@ RSpec.describe "Brands", type: :request do
     } }
   end
 
-  describe "GET /brands for admin" do
+  describe "GET /brands" do
     it "should show all brands" do
       get brands_path
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "POST /brands for admin" do
+  describe "POST /brands" do
     it "should create new brand" do
       post brands_path, params: params
       new_brand = Brand.last
@@ -41,7 +41,7 @@ RSpec.describe "Brands", type: :request do
     end
   end
 
-  describe "PUT /brand/:id for admin" do
+  describe "PUT /brand/:id" do
     it "should update brand" do
       put brand_path(brand), params: params.merge(id: brand.id)
       update_brand = brand.reload
@@ -51,7 +51,7 @@ RSpec.describe "Brands", type: :request do
     end
   end
 
-  describe "DELETE /brand/:id for admin" do
+  describe "DELETE /brand/:id" do
     it "should destroy brand" do
       delete brand_path(brand)
       expect(response).to redirect_to(brands_path)

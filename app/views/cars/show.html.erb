@@ -60,7 +60,7 @@
     <% end %>
   <% end %>
   <% if current_user&.admin? %>
-  <%= button_to "Edit this car", edit_car_path(@car), class: 'btn btn-secondary' %>
+  <%= button_to "Edit this car", edit_car_path(@car), class: 'btn btn-secondary', method: :get %>
   <%= button_to "Back to cars", cars_path, class: 'btn btn-secondary' %>
 
   <%= button_to "Destroy this car", @car, method: :delete, class: 'btn btn-secondary' %>
